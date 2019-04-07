@@ -6,9 +6,38 @@
   <script src="bundle.js" async></script>
 </head>
 <body>
+
+  <h2>Hello, Stimulus!</h2>
   <div data-controller="hello">
     <input data-target="hello.name" type="text">
     <button data-action="click->hello#greet">Greet</button>
   </div>
+  
+  <hr>
+  
+  <h3>Copy Button</h3>
+  <div data-controller="clipboard">
+    PIN: <input data-target="clipboard.source" type="text" value="1234" readonly>
+    <button data-action="clipboard#copy" class="clipboard-button">
+      Copy to Clipboard
+    </button>
+  </div>
+
+  <h3>Stimulus Controllers are Reusable</h3>
+  <div data-controller="clipboard">
+    PIN: <input data-target="clipboard.source" type="text" value="3737" readonly>
+    <button data-action="clipboard#copy" class="clipboard-button">
+      Copy to clipboard
+    </button>
+  </div>
+
+  <h3>Actions and Targets Can Go on Any Kind of Element</h3>
+  <div data-controller="clipboard">
+    PIN: <textarea data-target="clipboard.source" rows="1" readonly>3737</textarea>
+    <a href="#" data-action="clipboard#copy" class="clipboard-button">
+      Copy to clipboard
+    </a>
+  </div>
+
 </body>
 </html>
