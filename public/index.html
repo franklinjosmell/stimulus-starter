@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <h2>Hello, Stimulus!</h2>
+  <h3>Hello, Stimulus!</h3>
   <div data-controller="hello">
     <input data-target="hello.name" type="text">
     <button data-action="click->hello#greet">Greet</button>
@@ -39,5 +39,21 @@
     </a>
   </div>
 
+  <hr>
+
+  <h3>Slideshow</h3>
+
+  <div data-controller="slideshow">
+
+    <button data-action="slideshow#previous"><-</button>
+    <button data-action="slideshow#next">-></button>
+
+    <div data-target="slideshow.slide" class="slide">🐵</div>
+    <div data-target="slideshow.slide" class="slide">🙈</div>
+    <div data-target="slideshow.slide" class="slide">🙉</div>
+    <div data-target="slideshow.slide" class="slide">🙊</div>
+
+  </div>
+  
 </body>
 </html>
