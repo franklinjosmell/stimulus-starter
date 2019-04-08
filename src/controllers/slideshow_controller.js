@@ -4,23 +4,41 @@ export default class extends Controller {
   static targets = [ "slide" ]
 
   initialize() {
-    // const index = parseInt(this.element.getAttribute("data-slideshow-index"))
-    const index = parseInt(this.data.get("index"))
-    this.showSlide(index)
+    this.showCurrentSlide()
   }
 
   next() {
-    this.showSlide(this.index + 1)
+    this.index++
+    if (this.index == this.slideTargets.length) {
+      this.index = 0
+    }
   }
 
   previous() {
-    this.showSlide(this.index - 1)
+    this.index--
+    if (this.index == -1) {
+      this.index = 3
+    }
   }
 
-  showSlide(index) {
-    this.index = index
+  showCurrentSlide() {
     this.slideTargets.forEach((el, i) => {
-      el.classList.toggle("slide--current", index == i)
+      el.classList.toggle("slide--current", this.index == i)
     })
+  }
+
+  get index() {
+    const index = parseInt(this.data.get("index"))
+
+    if (index) {
+      return index
+    } else {
+      return 0
+    }
+  }
+
+  set index(value) {
+    this.data.set("index", value)
+    this.showCurrentSlide()
   }
 }
