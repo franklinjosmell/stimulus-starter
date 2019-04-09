@@ -4,6 +4,10 @@ export default class extends Controller {
 
   connect() {
     this.load()
+
+    if (this.data.has("refreshInterval")) {
+      this.startRefreshing()
+    }
   }
 
   load() {
@@ -12,5 +16,11 @@ export default class extends Controller {
       .then(html => {
         this.element.innerHTML = html
       })
+  }
+
+  startRefreshing() {
+    setInterval(() => {
+      this.load()
+    }, this.data.get("refreshInterval"))
   }
 }
