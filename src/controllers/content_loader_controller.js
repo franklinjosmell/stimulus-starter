@@ -10,6 +10,12 @@ export default class extends Controller {
     }
   }
 
+  disconnect() {
+    console.log(this.refreshTimer)
+    this.stopRefreshing()
+    console.log(this.refreshTimer)
+  }
+
   load() {
     fetch(this.data.get("url"))
       .then(response => response.text())
@@ -19,8 +25,15 @@ export default class extends Controller {
   }
 
   startRefreshing() {
-    setInterval(() => {
+    this.refreshTimer = setInterval(() => {
       this.load()
     }, this.data.get("refreshInterval"))
   }
+
+  stopRefreshing() {
+    if(this.refreshTimer) {
+      clearInterval(this.refreshTimer)
+    }
+  }
+  
 }
